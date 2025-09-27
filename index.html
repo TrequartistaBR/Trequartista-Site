@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trequartista - Gaming Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Orbitron', sans-serif; background: linear-gradient(180deg, #0a1a40, #111); color: #f0f0f0; scroll-behavior:smooth; }
+header { text-align:center; padding:80px 20px 60px; color:#00ff66; }
+header h1 { font-size:3rem; margin-bottom:15px; text-transform:uppercase; letter-spacing:3px; color:#ffd700; }
+header p { font-size:1.2rem; color:#f0f0f0; }
+#language-switch { text-align:center; margin-bottom:20px; }
+#language-switch button { background:#111; color:#fff; border:none; padding:8px 15px; margin:0 5px; font-weight:bold; cursor:pointer; border-radius:5px; transition:0.3s; }
+#language-switch button:hover { background:#7f00ff; color:#fff; }
+nav { position:sticky; top:0; background:#0a1a40; padding:15px; text-align:center; z-index:1000; border-bottom:2px solid #7f00ff; }
+nav a { color:#f0f0f0; margin:0 15px; text-decoration:none; font-weight:700; transition:color 0.3s; }
+nav a:hover { color:#00ff66; }
+section { padding:70px 20px; max-width:900px; margin:40px auto; background: rgba(10,26,64,0.85); border-radius:12px; box-shadow:0 0 15px rgba(127,0,255,0.3); opacity:0; transform:translateY(40px); transition:opacity 0.8s ease, transform 0.8s ease; }
+section.show { opacity:1; transform:translateY(0); }
+section h2 { font-size:1.8rem; margin-bottom:20px; color:#7f00ff; border-left:5px solid #ffd700; padding-left:10px; }
+section h3 { font-size:1.3rem; margin-bottom:15px; color:#ffd700; }
+section p, section li { text-align: justify; line-height:1.8rem; margin-bottom:15px; color: #f0f0f0; font-size:1.05rem; }
+ul { list-style:none; padding-left:0; }
+ul li a { color:#7f00ff; font-weight:bold; text-decoration:none; }
+ul li a:hover { text-decoration:underline; color:#00ff66; }
+.checklist { list-style:none; padding-left:0; }
+.checklist li { margin-bottom:15px; font-size:1rem; color:#ccc; display:flex; align-items:center; position:relative; }
+.checklist li input[type="checkbox"] { margin-right:10px; transform:scale(1.2); accent-color:#00ff66; cursor:pointer; }
+.checklist li label { cursor:pointer; }
+.checklist li i { margin-right:10px; font-size:1.2rem; color:#ffd700; opacity:0.3; transition: opacity 0.3s, color 0.3s; }
+.checklist li.completed i { opacity:1; color:#ff9900; }
+.checklist li.completed label { color:#00ff66; }
+.progress-container { width:100%; height:20px; background:rgba(30,30,60,0.5); border-radius:10px; margin-bottom:20px; overflow:hidden; box-shadow:0 0 8px #7f00ff inset; }
+.progress-bar { width:0%; height:100%; background: linear-gradient(90deg, #00ff66, #7f00ff); border-radius:10px; transition:width 0.5s ease; }
+#token a, #jogo a, ul li a { color:#7f00ff; text-decoration: none; font-weight: bold; }
+#token a:hover, #jogo a:hover, ul li a:hover { text-decoration:underline; color:#ffd700; }
+footer { background:#0a1a40; color:#f0f0f0; text-align:center; padding:25px; margin-top:60px; border-top:2px solid #7f00ff; }
+@media(max-width:768px) { header h1 { font-size:2rem; } nav a { display:inline-block; margin:10px 12px; } section { padding:50px 15px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 id="title">Trequartista</h1>
+  <p id="tagline">Eu faço vídeos e jogo games, principalmente Football Manager.</p>
+</header>
+
+<div id="language-switch">
+  <button onclick="setLanguage('pt')">PT</button>
+  <button onclick="setLanguage('en')">EN</button>
+</div>
+
+<nav>
+  <a href="#jogo" id="menu-jogo">Jogo Atual</a>
+  <a href="#desafios" id="menu-desafios">Desafios</a>
+  <a href="#token" id="menu-token">Token</a>
+  <a href="#links" id="menu-links">Links</a>
+</nav>
+
+<main>
+
+  <!-- Current Game -->
+  <section id="jogo">
+    <h2 id="section-jogo">Jogo Atual</h2>
+    <ul style="list-style: none; padding-left: 0; font-size: 1.1rem; color: #f0f0f0;">
+      <li><strong>Game:</strong> <a href="https://en.wikipedia.org/wiki/Football_Manager" target="_blank">Football Manager 2024</a></li>
+      <li><strong>Club:</strong> <a href="https://es.wikipedia.org/wiki/Club_Deportivo_Brea" target="_blank">Club Deportivo Brea</a></li>
+      <li><strong>Division:</strong> 4ª Divisão da Espanha</li>
+      <li><strong>Current Position:</strong> 3º Lugar</li>
+      <li class="challenge" id="challenge"><strong>Desafio:</strong> Levar um clube de uma cidade minúscula da Espanha (Brea de Aragon - 1559 habitantes) até os grandes palcos do futebol mundial.</li>
+    </ul>
+  </section>
+
+  <!-- Challenges -->
+  <section id="desafios">
+    <h2 id="section-desafios">Desafios</h2>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <ul class="checklist">
+      <li><input type="checkbox" id="d1"><i class="fas fa-medal"></i><label for="d1" id="d1-label">Consolidar na 4ª Divisão</label></li>
+      <li><input type="checkbox" id="d2"><i class="fas fa-medal"></i><label for="d2" id="d2-label">Subir para a 3ª Divisão</label></li>
+      <li><input type="checkbox" id="d3"><i class="fas fa-medal"></i><label for="d3" id="d3-label">Estabelecer-se na 3ª Divisão</label></li>
+      <li><input type="checkbox" id="d4"><i class="fas fa-medal"></i><label for="d4" id="d4-label">Subir para a 2ª Divisão</label></li>
+      <li><input type="checkbox" id="d5"><i class="fas fa-medal"></i><label for="d5" id="d5-label">Temporada estável na 2ª Divisão</label></li>
+      <li><input type="checkbox" id="d6"><i class="fas fa-medal"></i><label for="d6" id="d6-label">Subir para a 1ª Divisão (La Liga)</label></li>
+      <li><input type="checkbox" id="d7"><i class="fas fa-medal"></i><label for="d7" id="d7-label">Estabelecer-se na La Liga</label></li>
+      <li><input type="checkbox" id="d8"><i class="fas fa-medal"></i><label for="d8" id="d8-label">Classificar para a Europa League</label></li>
+      <li><input type="checkbox" id="d9"><i class="fas fa-medal"></i><label for="d9" id="d9-label">Chegar à Champions League</label></li>
+      <li><input type="checkbox" id="d10"><i class="fas fa-medal"></i><label for="d10" id="d10-label">Vencer a Champions League</label></li>
+    </ul>
+  </section>
+
+  <!-- Token -->
+  <section id="token">
+    <h2 id="section-token">Token</h2>
+    <p id="token-text">No canal Trequartista, cada fã pode se tornar parte do crescimento do projeto através de um token exclusivo criado na Pump.fun.</p>
+    <p id="token-text2">Esse token conecta a comunidade às taxas geradas pelo canal, permitindo que os seguidores mais engajados sejam recompensados.</p>
+    <p id="token-text3">O objetivo é valorizar e fortalecer a relação entre o canal e seus fãs, criando um sistema justo, interativo e participativo.</p>
+    <p id="token-text4">Saiba mais em <a href="https://pump.fun" target="_blank">pump.fun</a>.</p>
+  </section>
+
+  <!-- Links -->
+  <section id="links">
+    <h2 id="section-links">Links</h2>
+    <ul>
+      <li><i class="fab fa-twitter"></i><a href="https://twitter.com" target="_blank">Twitter</a></li>
+      <li><i class="fas fa-coins"></i><a href="https://pump.fun" target="_blank">Pump.fun</a></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 Trequartista - Todos os direitos reservados</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('show'); } }); }, {threshold:0.2});
+document.querySelectorAll('section').forEach(sec=>observer.observe(sec));
+
+const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+const progressBar = document.getElementById('progress-bar');
+checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
+function updateProgress(){
+  const total = checkboxes.length;
+  let checked = 0;
+  checkboxes.forEach(cb=>{
+    const li = cb.parentElement;
+    if(cb.checked){ checked++; li.classList.add('completed'); } 
+    else { li.classList.remove('completed'); }
+  });
+  const percent = (checked/total)*100;
+  progressBar.style.width = percent+'%';
+}
+
+const texts = {
+  pt:{ 
+    title:"Trequartista",
+    tagline:"Eu faço vídeos e jogo games, principalmente Football Manager.",
+    menu:{jogo:"Jogo Atual", desafios:"Desafios", token:"Token", links:"Links"},
+    section:{jogo:"Jogo Atual", desafios:"Desafios", links:"Links", token:"Token"},
+    challenge:"Levar um clube de uma cidade minúscula da Espanha (Brea de Aragon - 1559 habitantes) até os grandes palcos do futebol mundial.",
+    checklist:["Consolidar na 4ª Divisão","Subir para a 3ª Divisão","Estabelecer-se na 3ª Divisão","Subir para a 2ª Divisão","Temporada estável na 2ª Divisão","Subir para a 1ª Divisão (La Liga)","Estabelecer-se na La Liga","Classificar para a Europa League","Chegar à Champions League","Vencer a Champions League"],
+    token:["No canal Trequartista, cada fã pode se tornar parte do crescimento do projeto através de um token exclusivo criado na Pump.fun.","Esse token conecta a comunidade às taxas geradas pelo canal, permitindo que os seguidores mais engajados sejam recompensados.","O objetivo é valorizar e fortalecer a relação entre o canal e seus fãs, criando um sistema justo, interativo e participativo.","Saiba mais em pump.fun"]
+  },
+  en:{
+    title:"Trequartista",
+    tagline:"I stream games and share my gameplay, mostly Football Manager.",
+    menu:{jogo:"Current Game", desafios:"Challenges", token:"Token", links:"Links"},
+    section:{jogo:"Current Game", desafios:"Challenges", links:"Links", token:"Token"},
+    challenge:"Take a tiny Spanish town club (Brea de Aragon - 1,559 inhabitants) to the big stages of world football.",
+    checklist:["Consolidate in 4th Division","Promote to 3rd Division","Establish in 3rd Division","Promote to 2nd Division","Secure a stable season in 2nd Division","Promote to 1st Division (La Liga)","Establish in La Liga","Qualify for Europa League","Reach Champions League","Win the Champions League"],
+    token:["On the Trequartista channel, every fan can become part of the project's growth through a unique token created on Pump.fun.","This token connects the community to the fees generated by the channel, allowing the most engaged followers to be rewarded.","The goal is to value and strengthen the relationship between the channel and its fans, creating a fair, interactive, and participative system.","Learn more at pump.fun"]
+  }
+};
+
+function setLanguage(lang){
+  document.getElementById('title').textContent = texts[lang].title;
+  document.getElementById('tagline').textContent = texts[lang].tagline;
+  document.getElementById('menu-jogo').textContent = texts[lang].menu.jogo;
+  document.getElementById('menu-desafios').textContent = texts[lang].menu.desafios;
+  document.getElementById('menu-token').textContent = texts[lang].menu.token;
+  document.getElementById('menu-links').textContent = texts[lang].menu.links;
+  document.getElementById('section-jogo').textContent = texts[lang].section.jogo;
+  document.getElementById('section-desafios').textContent = texts[lang].section.desafios;
+  document.getElementById('section-links').textContent = texts[lang].section.links;
+  document.getElementById('section-token').textContent = texts[lang].section.token;
+  document.getElementById('challenge').textContent = texts[lang].challenge;
+  texts[lang].checklist.forEach((text,i)=>{ document.getElementById('d'+(i+1)+'-label').textContent = text; });
+  document.getElementById('token-text').textContent = texts[lang].token[0];
+  document.getElementById('token-text2').textContent = texts[lang].token[1];
+  document.getElementById('token-text3').textContent = texts[lang].token[2];
+  document.getElementById('token-text4').innerHTML = texts[lang].token[3].replace("pump.fun", '<a href="https://pump.fun" target="_blank">pump.fun</a>');
+}
+</script>
+
+</body>
+</html>
