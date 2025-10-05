@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TQ Cup - Tournament</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  html { scroll-behavior: smooth; }
-  .tab-active { color: #fff; background-color: #eab308; }
-  .flag { width: 22px; height: 15px; border-radius: 2px; margin-right: 6px; display:inline-block; vertical-align: middle; }
-  .select-status { background: #1e293b; border: 1px solid #facc15; border-radius: 4px; padding: 2px 6px; color: #facc15; font-size: 0.85rem; pointer-events: none; opacity: 0.85; }
-  .progress-bar { height: 24px; border-radius: 6px; background-color: #facc15; text-align: right; color: #0f172a; font-weight: 700; padding-right: 6px; line-height: 24px; }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TQ Cup - Tournament</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .tab-active { color: #fff; background-color: #eab308; }
+    .flag { width: 22px; height: 15px; border-radius: 2px; margin-right: 8px; display:inline-block; vertical-align:middle; }
+    .select-status { background: #0f1724; border: 1px solid #facc15; border-radius: 6px; padding: 4px 8px; color: #facc15; font-size: 0.85rem; pointer-events: none; opacity: 0.9; }
+    .progress-bar { height: 18px; border-radius: 10px; background-color: rgba(250, 204, 21, 0.18); overflow: hidden; }
+    .progress-fill { height: 100%; background-color: #facc15; text-align: right; padding-right:8px; line-height:18px; font-weight:700; color:#0f1724; }
+  </style>
 </head>
 <body class="bg-gradient-to-b from-slate-900 to-gray-800 text-gray-100 font-sans">
 
@@ -20,13 +21,12 @@
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
       <h1 class="text-2xl font-bold text-yellow-400">TQ Cup ⚽</h1>
       <div class="flex space-x-2 items-center">
-        <a href="#como-funciona" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="How It Works" data-zh="运作方式">How It Works</a>
-        <a href="#como-participar" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="How to Participate" data-zh="如何参与">How to Participate</a>
-        <a href="#selecoes" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="Teams" data-zh="参赛队伍">Teams</a>
-        <a href="#premios" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="Prizes" data-zh="奖池">Prizes</a>
-        <a href="#sobre" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="About the Game" data-zh="关于游戏">About the Game</a>
+        <a href="#how-it-works" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="How It Works" data-zh="运作方式">How It Works</a>
+        <a href="#how-to-participate" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="How to Participate" data-zh="如何参与">How to Participate</a>
+        <a href="#teams" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="Teams" data-zh="参赛队伍">Teams</a>
+        <a href="#prizes" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="Prizes" data-zh="奖池">Prizes</a>
+        <a href="#about" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="About the Game" data-zh="关于游戏">About the Game</a>
 
-        <!-- language selector -->
         <select id="langSelect" class="ml-4 bg-slate-800 border border-yellow-500 text-yellow-400 text-sm rounded px-2 py-1">
           <option value="en">English</option>
           <option value="zh">中文</option>
@@ -35,275 +35,176 @@
     </div>
   </nav>
 
-  <!-- MAIN CONTENT -->
-  <main class="pt-24 pb-16 px-6 max-w-4xl mx-auto space-y-20">
+  <!-- MAIN -->
+  <main class="pt-24 pb-16 px-6 max-w-6xl mx-auto space-y-16">
 
-    <!-- HOW IT WORKS (id preserved from original: como-funciona) -->
-    <section id="como-funciona" class="space-y-4">
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="space-y-4">
       <h2 class="text-3xl font-bold text-yellow-400" data-en="How It Works" data-zh="运作方式">How It Works</h2>
-
-      <p data-en="The TQ Cup is a simulated tournament running in Football Manager. Each participant may acquire the right to support a specific national team by holding the $TQ token."
-         data-zh="TQ 杯是在 Football Manager 中运行的模拟锦标赛。每位参与者可以通过持有 $TQ 代币获得支持特定国家队的权利。">
-         The TQ Cup is a simulated tournament running in Football Manager. Each participant may acquire the right to support a specific national team by holding the $TQ token.
+      <p data-en="The TQ Cup is a simulated tournament run inside Football Manager. Each participant can back one national team by purchasing the right with $TQ tokens."
+         data-zh="TQ杯是在 Football Manager 中运行的模拟锦标赛。每位参与者可以通过 $TQ 代币购买支持一支国家队的权利。">
+         The TQ Cup is a simulated tournament run inside Football Manager. Each participant can back one national team by purchasing the right with $TQ tokens.
       </p>
-
-      <p data-en="Matches are automatically simulated by the game's engine — there is no human intervention. Team performance results from in-game data and player attributes."
-         data-zh="比赛由游戏引擎自动模拟——没有人为干预。球队的表现基于游戏内数据和球员属性。">
-         Matches are automatically simulated by the game's engine — there is no human intervention. Team performance results from in-game data and player attributes.
-      </p>
-
-      <p data-en="This is the first competition. Soon we will run additional cups such as a traditional World Cup, Champions League formats, and more."
-         data-zh="这是第一场赛事。我们很快会推出传统世界杯、冠军联赛等更多赛事。">
-         This is the first competition. Soon we will run additional cups such as a traditional World Cup, Champions League formats, and more.
+      <p data-en="All matches are simulated by the game's engine — there is no human interference. Results depend on in-game player data and team attributes."
+         data-zh="所有比赛均由游戏引擎模拟——不接受人为干预。结果基于游戏内的球员数据与球队属性。">
+         All matches are simulated by the game's engine — there is no human interference. Results depend on in-game player data and team attributes.
       </p>
     </section>
 
-    <!-- HOW TO PARTICIPATE (id como-participar) -->
-    <section id="como-participar" class="space-y-4">
+    <!-- HOW TO PARTICIPATE -->
+    <section id="how-to-participate" class="space-y-4">
       <h2 class="text-3xl font-bold text-yellow-400" data-en="How to Participate" data-zh="如何参与">How to Participate</h2>
-
-      <p data-en="To participate, deposit 3,000,000 $TQ tokens into the tournament's official public wallet. After the deposit, comment on the token's page indicating which national team you chose to support."
-         data-zh="要参与，请将 3,000,000 个 $TQ 代币存入锦标赛的官方公开钱包。存款后，在代币页面留言说明您选择支持的国家队。">
-         To participate, deposit 3,000,000 $TQ tokens into the tournament's official public wallet. After the deposit, comment on the token's page indicating which national team you chose to support.
+      <p data-en="1) Transfer the participation amount to the tournament's official public wallet (see below). 2) After the on-chain confirmation, leave a comment on the token page stating which national team you back."
+         data-zh="1）将参与金额转入锦标赛官方公开钱包（见下文）。2）链上确认后，在代币页面留言说明您支持的国家队。">
+         1) Transfer the participation amount to the tournament's official public wallet (see below). 2) After the on-chain confirmation, leave a comment on the token page stating which national team you back.
       </p>
-
       <p class="text-yellow-400" data-en="<strong>Official wallet:</strong> 8BJe23xCtDxWzcjfEGmijn7W7f4SYTvxao9XLVAs2cgb" data-zh="<strong>官方钱包：</strong>[在此处填写地址]">
-        <strong>Official wallet:</strong> [insert public address here]
+        <strong>Official wallet:</strong> 8BJe23xCtDxWzcjfEGmijn7W7f4SYTvxao9XLVAs2cgb
+      </p>
+      <p data-en="Participation values differ by team group. Favorites cost 3,000,000 TQ; other groups are set proportionally." data-zh="参与费用按球队组别不同而异。热门球队为 3,000,000 TQ；其他组别按比例设置。">
+        Participation values differ by team group. Favorites cost 3,000,000 TQ; other groups are set proportionally.
       </p>
     </section>
 
-    <!-- TEAMS (id selecoes) -->
-    <section id="selecoes" class="space-y-6">
-      <h2 class="text-3xl font-bold text-yellow-400" data-en="Teams and Betting Values" data-zh="球队及投注金额">Teams and Betting Values</h2>
-
-      <p data-en="Values are displayed in $TQ tokens. Favorites are 3,000,000 $TQ and the other groups are proportionally priced."
-         data-zh="金额以 $TQ 代币表示。热门球队为 3,000,000 $TQ，其他组别按比例定价。">
-         Values are displayed in $TQ tokens. Favorites are 3,000,000 $TQ and the other groups are proportionally priced.
+    <!-- TEAMS -->
+    <section id="teams" class="space-y-6">
+      <h2 class="text-3xl font-bold text-yellow-400" data-en="Teams and Participation Values" data-zh="球队及参与费用">Teams and Participation Values</h2>
+      <p data-en="Below are the participating national teams grouped by estimated title chances. Each entry shows the country flag, name and the participation price in $TQ. The status selector is admin-only (disabled here)."
+         data-zh="以下为按夺冠概率估算分组的参赛国家。每项显示国旗、名称和参与费用（以 $TQ 计）。状态选择仅限管理员（此处禁用）。">
+        Below are the participating national teams grouped by estimated title chances. Each entry shows the country flag, name and the participation price in $TQ. The status selector is admin-only (disabled here).
       </p>
 
-      <!-- Group: Favorites -->
+      <!-- FAVORITES (3,000,000) -->
       <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg">
-        <h3 class="text-xl font-semibold text-yellow-400" data-en="Favorites — 3,000,000 $TQ" data-zh="热门球队 — 3,000,000 $TQ">Favorites — 3,000,000 $TQ</h3>
-        <ul class="grid grid-cols-2 gap-2 mt-2">
-          <li><img class="flag" src="https://flagcdn.com/w20/br.png"><span data-en="Brazil" data-zh="巴西">Brazil</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+        <h3 class="text-xl font-semibold text-yellow-300" data-en="Favorites — 3,000,000 TQ" data-zh="热门球队 — 3,000,000 TQ">Favorites — 3,000,000 TQ</h3>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/br.png">Brazil</div><div><span class="text-yellow-300 font-bold">3,000,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/ar.png"><span data-en="Argentina" data-zh="阿根廷">Argentina</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/fr.png">France</div><div><span class="text-yellow-300 font-bold">3,000,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/fr.png"><span data-en="France" data-zh="法国">France</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/de.png">Germany</div><div><span class="text-yellow-300 font-bold">3,000,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/gb.png"><span data-en="England" data-zh="英格兰">England</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/ar.png">Argentina</div><div><span class="text-yellow-300 font-bold">3,000,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/de.png"><span data-en="Germany" data-zh="德国">Germany</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/gb.png">England</div><div><span class="text-yellow-300 font-bold">3,000,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/it.png">Italy</div><div><span class="text-yellow-300 font-bold">3,000,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/es.png">Spain</div><div><span class="text-yellow-300 font-bold">3,000,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
         </ul>
       </div>
 
-      <!-- Group: Strong -->
+      <!-- STRONG CONTENDERS (2,400,000) -->
       <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg">
-        <h3 class="text-xl font-semibold text-yellow-400" data-en="Strong — 2,500,000 $TQ" data-zh="强队 — 2,500,000 $TQ">Strong — 2,500,000 $TQ</h3>
-        <ul class="grid grid-cols-2 gap-2 mt-2">
-          <li><img class="flag" src="https://flagcdn.com/w20/pt.png"><span data-en="Portugal" data-zh="葡萄牙">Portugal</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
-          <li><img class="flag" src="https://flagcdn.com/w20/es.png"><span data-en="Spain" data-zh="西班牙">Spain</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
-          <li><img class="flag" src="https://flagcdn.com/w20/nl.png"><span data-en="Netherlands" data-zh="荷兰">Netherlands</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
-          <li><img class="flag" src="https://flagcdn.com/w20/hr.png"><span data-en="Croatia" data-zh="克罗地亚">Croatia</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
-          <li><img class="flag" src="https://flagcdn.com/w20/be.png"><span data-en="Belgium" data-zh="比利时">Belgium</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+        <h3 class="text-xl font-semibold text-yellow-300 mt-4" data-en="Strong Contenders — 2,400,000 TQ" data-zh="强队 — 2,400,000 TQ">Strong Contenders — 2,400,000 TQ</h3>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/pt.png">Portugal</div><div><span class="text-yellow-300 font-bold">2,400,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/be.png">Belgium</div><div><span class="text-yellow-300 font-bold">2,400,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/uy.png">Uruguay</div><div><span class="text-yellow-300 font-bold">2,400,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/jp.png">Japan</div><div><span class="text-yellow-300 font-bold">2,400,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/mx.png">Mexico</div><div><span class="text-yellow-300 font-bold">2,400,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/ch.png">Switzerland</div><div><span class="text-yellow-300 font-bold">2,400,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
         </ul>
       </div>
 
-      <!-- Group: Intermediate -->
+      <!-- MID-LEVEL (1,500,000) -->
       <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg">
-        <h3 class="text-xl font-semibold text-yellow-400" data-en="Intermediate — 2,000,000 $TQ" data-zh="中等 — 2,000,000 $TQ">Intermediate — 2,000,000 $TQ</h3>
-        <ul class="grid grid-cols-2 gap-2 mt-2">
-          <li><img class="flag" src="https://flagcdn.com/w20/uy.png"><span data-en="Uruguay" data-zh="乌拉圭">Uruguay</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+        <h3 class="text-xl font-semibold text-yellow-300 mt-4" data-en="Mid-Level Teams — 1,500,000 TQ" data-zh="中等球队 — 1,500,000 TQ">Mid-Level Teams — 1,500,000 TQ</h3>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/us.png">United States</div><div><span class="text-yellow-300 font-bold">1,500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/dk.png"><span data-en="Denmark" data-zh="丹麦">Denmark</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/ma.png">Morocco</div><div><span class="text-yellow-300 font-bold">1,500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/ch.png"><span data-en="Switzerland" data-zh="瑞士">Switzerland</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/sn.png">Senegal</div><div><span class="text-yellow-300 font-bold">1,500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/sn.png"><span data-en="Senegal" data-zh="塞内加尔">Senegal</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/kr.png">South Korea</div><div><span class="text-yellow-300 font-bold">1,500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/us.png"><span data-en="United States" data-zh="美国">United States</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/pl.png">Poland</div><div><span class="text-yellow-300 font-bold">1,500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/mx.png"><span data-en="Mexico" data-zh="墨西哥">Mexico</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/co.png">Colombia</div><div><span class="text-yellow-300 font-bold">1,500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/cl.png">Chile</div><div><span class="text-yellow-300 font-bold">1,500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/ec.png">Ecuador</div><div><span class="text-yellow-300 font-bold">1,500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/au.png">Australia</div><div><span class="text-yellow-300 font-bold">1,500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/at.png">Austria</div><div><span class="text-yellow-300 font-bold">1,500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
         </ul>
       </div>
 
-      <!-- Group: Average -->
+      <!-- UNDERDOGS (900,000) -->
       <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg">
-        <h3 class="text-xl font-semibold text-yellow-400" data-en="Average — 1,500,000 $TQ" data-zh="一般 — 1,500,000 $TQ">Average — 1,500,000 $TQ</h3>
-        <ul class="grid grid-cols-2 gap-2 mt-2">
-          <li><img class="flag" src="https://flagcdn.com/w20/jp.png"><span data-en="Japan" data-zh="日本">Japan</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+        <h3 class="text-xl font-semibold text-yellow-300 mt-4" data-en="Underdogs — 900,000 TQ" data-zh="弱旅 — 900,000 TQ">Underdogs — 900,000 TQ</h3>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/ng.png">Nigeria</div><div><span class="text-yellow-300 font-bold">900,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/kr.png"><span data-en="South Korea" data-zh="韩国">South Korea</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/gh.png">Ghana</div><div><span class="text-yellow-300 font-bold">900,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/pl.png"><span data-en="Poland" data-zh="波兰">Poland</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/dz.png">Algeria</div><div><span class="text-yellow-300 font-bold">900,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/ma.png"><span data-en="Morocco" data-zh="摩洛哥">Morocco</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/no.png">Norway</div><div><span class="text-yellow-300 font-bold">900,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/rs.png"><span data-en="Serbia" data-zh="塞尔维亚">Serbia</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/tn.png">Tunisia</div><div><span class="text-yellow-300 font-bold">900,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/cm.png">Cameroon</div><div><span class="text-yellow-300 font-bold">900,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/ir.png">Iran</div><div><span class="text-yellow-300 font-bold">900,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/cz.png">Czech Republic</div><div><span class="text-yellow-300 font-bold">900,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/ba.png">Bosnia & Herzegovina</div><div><span class="text-yellow-300 font-bold">900,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/pa.png">Panama</div><div><span class="text-yellow-300 font-bold">900,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
         </ul>
       </div>
 
-      <!-- Group: Underdogs -->
+      <!-- OUTSIDERS (500,000) -->
       <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg">
-        <h3 class="text-xl font-semibold text-yellow-400" data-en="Underdogs — 1,000,000 $TQ" data-zh="黑马 — 1,000,000 $TQ">Underdogs — 1,000,000 $TQ</h3>
-        <ul class="grid grid-cols-2 gap-2 mt-2">
-          <li><img class="flag" src="https://flagcdn.com/w20/cr.png"><span data-en="Costa Rica" data-zh="哥斯达黎加">Costa Rica</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+        <h3 class="text-xl font-semibold text-yellow-300 mt-4" data-en="Outsiders — 500,000 TQ" data-zh="冷门 — 500,000 TQ">Outsiders — 500,000 TQ</h3>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/ca.png">Canada</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/ir.png"><span data-en="Iran" data-zh="伊朗">Iran</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/xk.png">Kosovo</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/tn.png"><span data-en="Tunisia" data-zh="突尼斯">Tunisia</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/sa.png">Saudi Arabia</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/gb-wls.png"><span data-en="Wales" data-zh="威尔士">Wales</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/uz.png">Uzbekistan</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/qa.png"><span data-en="Qatar" data-zh="卡塔尔">Qatar</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/nz.png">New Zealand</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/cm.png"><span data-en="Cameroon" data-zh="喀麦隆">Cameroon</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/ae.png">United Arab Emirates</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/ca.png"><span data-en="Canada" data-zh="加拿大">Canada</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/sr.png">Suriname</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/gh.png"><span data-en="Ghana" data-zh="加纳">Ghana</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/cu.png">Cuba</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/au.png"><span data-en="Australia" data-zh="澳大利亚">Australia</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/eg.png">Egypt</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/sa.png"><span data-en="Saudi Arabia" data-zh="沙特阿拉伯">Saudi Arabia</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/iq.png">Iraq</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
 
-          <li><img class="flag" src="https://flagcdn.com/w20/ec.png"><span data-en="Ecuador" data-zh="厄瓜多尔">Ecuador</span>
-            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
-              <option>Not chosen</option><option>Chosen</option>
-            </select>
-          </li>
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/jm.png">Jamaica</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/hn.png">Honduras</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/pa.png">Panama</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/ci.png">Ivory Coast</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
+
+          <li class="flex justify-between items-center p-2"><div><img class="flag" src="https://flagcdn.com/w20/ie.png">Ireland</div><div><span class="text-yellow-300 font-bold">500,000 TQ</span> <select class="select-status" disabled><option>Not chosen</option><option>Chosen</option></select></div></li>
         </ul>
       </div>
 
     </section>
 
-    <!-- PRIZES (id premios) -->
-    <section id="premios" class="space-y-6">
-      <h2 class="text-3xl font-bold text-yellow-400" data-en="Prizes" data-zh="奖品">Prizes</h2>
+    <!-- PRIZES -->
+    <section id="prizes" class="space-y-6">
+      <h2 class="text-3xl font-bold text-yellow-400" data-en="Prizes" data-zh="奖池">Prizes</h2>
 
       <p data-en="Of the total collected, <strong class='text-yellow-300'>18%</strong> of tokens will be <strong>burned</strong> — contributing to the appreciation of the $TQ ecosystem."
          data-zh="在总筹集的代币中，<strong class='text-yellow-300'>18%</strong>将被<strong>销毁</strong>，以促进 $TQ 生态系统的增值。">
@@ -315,54 +216,50 @@
          The remaining <strong class='text-yellow-300'>82%</strong> will be distributed <strong>cumulatively</strong> among the teams according to their performance.
       </p>
 
-      <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg space-y-5">
+      <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg space-y-4">
         <div>
-          <span data-en="Round of 16" data-zh="16强">Round of 16</span>: 1%
-          <div class="progress-bar" style="width:10%">1%</div>
+          <h4 class="font-semibold" data-en="Round of 16" data-zh="16强">Round of 16</h4>
+          <p class="text-sm text-gray-300" data-en="Teams that reach the Round of 16 receive 1%." data-zh="进入16强的球队将获得1%的分配。">Teams that reach the Round of 16 receive 1%.</p>
+          <div class="progress-bar"><div class="progress-fill" style="width:12%">1%</div></div>
         </div>
 
         <div>
-          <span data-en="Quarterfinals" data-zh="8强">Quarterfinals</span>: 2%
-          <div class="progress-bar" style="width:24%">3%</div>
+          <h4 class="font-semibold" data-en="Quarterfinals" data-zh="8强">Quarterfinals</h4>
+          <p class="text-sm text-gray-300" data-en="Teams that reach the Quarterfinals receive an additional 2% (cumulative 3%)." data-zh="进入8强的球队将额外获得2%（累计3%）。">Teams that reach the Quarterfinals receive an additional 2% (cumulative 3%).</p>
+          <div class="progress-bar"><div class="progress-fill" style="width:30%">3%</div></div>
         </div>
 
         <div>
-          <span data-en="Semifinals" data-zh="半决赛">Semifinals</span>: 5%
-          <div class="progress-bar" style="width:42%">8%</div>
+          <h4 class="font-semibold" data-en="Semifinals" data-zh="半决赛">Semifinals</h4>
+          <p class="text-sm text-gray-300" data-en="Semifinalists receive an additional 5% (cumulative 8%)." data-zh="进入半决赛的球队将额外获得5%（累计8%）。">Semifinalists receive an additional 5% (cumulative 8%).</p>
+          <div class="progress-bar"><div class="progress-fill" style="width:60%">8%</div></div>
         </div>
 
         <div>
-          <span data-en="Runner-up" data-zh="亚军">Runner-up</span>: 10%
-          <div class="progress-bar" style="width:64%">18%</div>
+          <h4 class="font-semibold" data-en="Runner-up" data-zh="亚军">Runner-up</h4>
+          <p class="text-sm text-gray-300" data-en="The runner-up receives an additional 10% (cumulative 18%)." data-zh="亚军额外获得10%（累计18%）。">The runner-up receives an additional 10% (cumulative 18%).</p>
+          <div class="progress-bar"><div class="progress-fill" style="width:90%">18%</div></div>
         </div>
 
         <div>
-          <span data-en="Champion" data-zh="冠军">Champion</span>: 20%
-          <div class="progress-bar" style="width:100%">28%</div>
+          <h4 class="font-semibold" data-en="Champion" data-zh="冠军">Champion</h4>
+          <p class="text-sm text-gray-300" data-en="The champion receives an additional 20% (cumulative 28%)." data-zh="冠军额外获得20%（累计28%）。">The champion receives an additional 20% (cumulative 28%).</p>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%">28%</div></div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT THE GAME (id sobre) -->
-    <section id="sobre" class="space-y-4">
+    <!-- ABOUT -->
+    <section id="about" class="space-y-4">
       <h2 class="text-3xl font-bold text-yellow-400" data-en="About the Game" data-zh="关于游戏">About the Game</h2>
-
-      <p data-en="Football Manager is one of the most advanced football management simulators. Developed by Sports Interactive, the game places the user in the role of manager, handling tactics, transfers, finances and player development."
-         data-zh="Football Manager 是最先进的足球管理模拟器之一，由 Sports Interactive 开发。游戏中玩家扮演教练/经理，处理战术、转会、财务和球员成长等事务。">
-         Football Manager is one of the most advanced football management simulators. Developed by Sports Interactive, the game places the user in the role of manager, handling tactics, transfers, finances and player development.
+      <p data-en="Football Manager is one of the most advanced football management simulations. In this tournament matches are run by the game's AI based on player data and attributes — no human interference is possible."
+         data-zh="Football Manager 是最先进的足球管理模拟器之一。本赛事的比赛由游戏 AI 基于球员数据与属性运行——不接受人为干预。">
+         Football Manager is one of the most advanced football management simulations. In this tournament matches are run by the game's AI based on player data and attributes — no human interference is possible.
       </p>
-
-      <p data-en="Matches are decided by the simulation engine using realistic player stats and team data — there is no human manipulation of match outcomes in this tournament."
-         data-zh="比赛由模拟引擎基于真实球员数据和球队信息计算决定——本赛事的比赛结果不会有人为操控。">
-         Matches are decided by the simulation engine using realistic player stats and team data — there is no human manipulation of match outcomes in this tournament.
+      <p data-en="For more information, see the Football Manager article on Wikipedia." data-zh="欲了解更多信息，请参阅 Wikipedia 上的 Football Manager 条目。">
+        For more information, see the Football Manager article on Wikipedia.
       </p>
-
-      <p data-en="For more information, visit the Football Manager article on Wikipedia."
-         data-zh="欲了解更多信息，请访问 Wikipedia 上的 Football Manager 条目。">
-         For more information, visit the Football Manager article on Wikipedia.
-      </p>
-
-      <p><a href="https://en.wikipedia.org/wiki/Football_Manager" target="_blank" class="text-yellow-400 underline" data-en="Wikipedia" data-zh="维基百科">Wikipedia</a></p>
+      <p><a href="https://en.wikipedia.org/wiki/Football_Manager" target="_blank" class="text-yellow-400 underline">Wikipedia</a></p>
     </section>
 
   </main>
@@ -372,44 +269,33 @@
     <p data-en="© 2025 TQ Cup — Powered by Football Manager & $TQ Token" data-zh="© 2025 TQ 杯 — 由 Football Manager 与 $TQ 代币支持">© 2025 TQ Cup — Powered by Football Manager & $TQ Token</p>
   </footer>
 
-  <!-- SCRIPT: language switch + tab highlight -->
+  <!-- SCRIPTS -->
   <script>
-    // function to set language for all elements with data-en attribute
-    function setLanguage(lang) {
-      // For elements with data-en (we use data-en as the 'key presence' selector)
+    // Language switch: en (default) / zh
+    function setLang(lang) {
       document.querySelectorAll('[data-en]').forEach(el => {
-        // choose dataset key
         const val = el.dataset[lang];
-        if (typeof val !== 'undefined') {
-          el.innerHTML = val;
-        }
+        if (typeof val !== 'undefined') el.innerHTML = val;
       });
 
-      // For select elements that hold option HTML inside data-en/data-zh
-      document.querySelectorAll('select.select-status').forEach(s => {
-        const html = s.dataset[lang];
-        if (typeof html !== 'undefined') {
-          s.innerHTML = html;
-        }
-        // keep disabled (only admin edits locally)
+      // keep selects disabled
+      document.querySelectorAll('select.select-status').forEach(s=>{
+        // if there is dataset content for options, use it (not necessary here)
         s.disabled = true;
       });
     }
 
-    // initial language = English
-    setLanguage('en');
+    // initial
+    setLang('en');
 
-    // hook up language selector
-    document.getElementById('langSelect').addEventListener('change', (e) => {
-      const lang = e.target.value;
-      setLanguage(lang);
+    document.getElementById('langSelect').addEventListener('change', (e)=>{
+      setLang(e.target.value);
     });
 
-    // tab highlight (keeps original class behavior)
-    const tabs = document.querySelectorAll('.tab');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('tab-active'));
+    // tab highlight
+    document.querySelectorAll('.tab').forEach(tab=>{
+      tab.addEventListener('click', ()=>{
+        document.querySelectorAll('.tab').forEach(t=>t.classList.remove('tab-active'));
         tab.classList.add('tab-active');
       });
     });
