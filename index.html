@@ -1,179 +1,418 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trequartista - Gaming Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TQ Cup - Tournament</title>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: 'Orbitron', sans-serif; background: linear-gradient(180deg, #0a1a40, #111); color: #f0f0f0; scroll-behavior:smooth; }
-header { text-align:center; padding:80px 20px 60px; color:#00ff66; }
-header h1 { font-size:3rem; margin-bottom:15px; text-transform:uppercase; letter-spacing:3px; color:#ffd700; }
-header p { font-size:1.2rem; color:#f0f0f0; }
-#language-switch { text-align:center; margin-bottom:20px; }
-#language-switch button { background:#111; color:#fff; border:none; padding:8px 15px; margin:0 5px; font-weight:bold; cursor:pointer; border-radius:5px; transition:0.3s; }
-#language-switch button:hover { background:#7f00ff; color:#fff; }
-nav { position:sticky; top:0; background:#0a1a40; padding:15px; text-align:center; z-index:1000; border-bottom:2px solid #7f00ff; }
-nav a { color:#f0f0f0; margin:0 15px; text-decoration:none; font-weight:700; transition:color 0.3s; }
-nav a:hover { color:#00ff66; }
-section { padding:70px 20px; max-width:900px; margin:40px auto; background: rgba(10,26,64,0.85); border-radius:12px; box-shadow:0 0 15px rgba(127,0,255,0.3); opacity:0; transform:translateY(40px); transition:opacity 0.8s ease, transform 0.8s ease; }
-section.show { opacity:1; transform:translateY(0); }
-section h2 { font-size:1.8rem; margin-bottom:20px; color:#7f00ff; border-left:5px solid #ffd700; padding-left:10px; }
-section p, section li { text-align: justify; line-height:1.8rem; margin-bottom:15px; color: #f0f0f0; font-size:1.05rem; }
-ul { list-style:none; padding-left:0; }
-ul li a { color:#7f00ff; font-weight:bold; text-decoration:none; }
-ul li a:hover { text-decoration:underline; color:#00ff66; }
-.checklist { list-style:none; padding-left:0; }
-.checklist li { margin-bottom:15px; font-size:1rem; color:#ccc; display:flex; align-items:center; }
-.checklist li i { margin-right:10px; font-size:1.2rem; color:#ffd700; opacity:0.3; transition: opacity 0.3s, color 0.3s; }
-.checklist li.completed i { opacity:1; color:#ff9900; }
-.checklist li.completed { color:#00ff66; }
-.progress-container { width:100%; height:20px; background:rgba(30,30,60,0.5); border-radius:10px; margin-bottom:20px; overflow:hidden; box-shadow:0 0 8px #7f00ff inset; }
-.progress-bar { width:0%; height:100%; background: linear-gradient(90deg, #00ff66, #7f00ff); border-radius:10px; transition:width 0.5s ease; }
-#token a, #jogo a, ul li a { color:#7f00ff; text-decoration: none; font-weight: bold; }
-#token a:hover, #jogo a:hover, ul li a:hover { text-decoration:underline; color:#ffd700; }
-footer { background:#0a1a40; color:#f0f0f0; text-align:center; padding:25px; margin-top:60px; border-top:2px solid #7f00ff; }
-@media(max-width:768px) { header h1 { font-size:2rem; } nav a { display:inline-block; margin:10px 12px; } section { padding:50px 15px; } }
+  html { scroll-behavior: smooth; }
+  .tab-active { color: #fff; background-color: #eab308; }
+  .flag { width: 22px; height: 15px; border-radius: 2px; margin-right: 6px; display:inline-block; vertical-align: middle; }
+  .select-status { background: #1e293b; border: 1px solid #facc15; border-radius: 4px; padding: 2px 6px; color: #facc15; font-size: 0.85rem; pointer-events: none; opacity: 0.85; }
+  .progress-bar { height: 24px; border-radius: 6px; background-color: #facc15; text-align: right; color: #0f172a; font-weight: 700; padding-right: 6px; line-height: 24px; }
 </style>
 </head>
-<body>
+<body class="bg-gradient-to-b from-slate-900 to-gray-800 text-gray-100 font-sans">
 
-<header>
-  <h1 id="title">Trequartista</h1>
-  <p id="tagline">Eu faço vídeos e jogo games, principalmente Football Manager.</p>
-</header>
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 w-full bg-slate-950/90 backdrop-blur-sm shadow-lg z-50 border-b border-yellow-500/30">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-yellow-400">TQ Cup ⚽</h1>
+      <div class="flex space-x-2 items-center">
+        <a href="#como-funciona" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="How It Works" data-zh="运作方式">How It Works</a>
+        <a href="#como-participar" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="How to Participate" data-zh="如何参与">How to Participate</a>
+        <a href="#selecoes" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="Teams" data-zh="参赛队伍">Teams</a>
+        <a href="#premios" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="Prizes" data-zh="奖池">Prizes</a>
+        <a href="#sobre" class="tab px-4 py-2 rounded hover:bg-yellow-600/30" data-en="About the Game" data-zh="关于游戏">About the Game</a>
 
-<div id="language-switch">
-  <button onclick="setLanguage('pt')">PT</button>
-  <button onclick="setLanguage('en')">EN</button>
-</div>
-
-<nav>
-  <a href="#jogo" id="menu-jogo">Jogo Atual</a>
-  <a href="#desafios" id="menu-desafios">Desafios</a>
-  <a href="#token" id="menu-token">Token</a>
-  <a href="#links" id="menu-links">Links</a>
-</nav>
-
-<main>
-
-  <!-- Current Game -->
-  <section id="jogo">
-    <h2 id="section-jogo">Jogo Atual</h2>
-    <ul style="list-style: none; padding-left: 0; font-size: 1.1rem; color: #f0f0f0;">
-      <li><strong>Game:</strong> <a href="https://en.wikipedia.org/wiki/Football_Manager" target="_blank">Football Manager 2024</a></li>
-      <li><strong>Club:</strong> <a href="https://es.wikipedia.org/wiki/Club_Deportivo_Brea" target="_blank">Club Deportivo Brea</a></li>
-      <li><strong>Division:</strong> 4ª Divisão da Espanha</li>
-      <li><strong>Current Position:</strong> 3º Lugar</li>
-      <li class="challenge" id="challenge"><strong>Desafio:</strong> Levar um clube de uma cidade minúscula da Espanha (Brea de Aragon - 1559 habitantes) até os grandes palcos do futebol mundial.</li>
-    </ul>
-  </section>
-
-  <!-- Challenges -->
-  <section id="desafios">
-    <h2 id="section-desafios">Desafios</h2>
-    <div class="progress-container">
-      <div class="progress-bar" id="progress-bar" style="width:0%;"></div>
+        <!-- language selector -->
+        <select id="langSelect" class="ml-4 bg-slate-800 border border-yellow-500 text-yellow-400 text-sm rounded px-2 py-1">
+          <option value="en">English</option>
+          <option value="zh">中文</option>
+        </select>
+      </div>
     </div>
-    <ul class="checklist" id="checklist">
-      <li class="completed"><i class="fas fa-medal"></i>Consolidar na 4ª Divisão</li>
-      <li><i class="fas fa-medal"></i>Subir para a 3ª Divisão</li>
-      <li><i class="fas fa-medal"></i>Estabelecer-se na 3ª Divisão</li>
-      <li><i class="fas fa-medal"></i>Subir para a 2ª Divisão</li>
-      <li><i class="fas fa-medal"></i>Temporada estável na 2ª Divisão</li>
-      <li><i class="fas fa-medal"></i>Subir para a 1ª Divisão (La Liga)</li>
-      <li><i class="fas fa-medal"></i>Estabelecer-se na La Liga</li>
-      <li><i class="fas fa-medal"></i>Classificar para a Europa League</li>
-      <li><i class="fas fa-medal"></i>Chegar à Champions League</li>
-      <li><i class="fas fa-medal"></i>Vencer a Champions League</li>
-    </ul>
-  </section>
+  </nav>
 
-  <!-- Token -->
-  <section id="token">
-    <h2 id="section-token">Token</h2>
-    <p id="token-text">No Trequartista, cada fã pode se tornar parte do crescimento do projeto através de um token exclusivo criado na Pump.fun. Esse token conecta a comunidade ao desenvolvimento do canal, gerando uma ligação direta entre o que acontece nas streams e a participação dos seguidores.</p>
-    <p id="token-text2">A ideia é simples: conforme o canal evolui e conquista novos objetivos dentro do jogo, estratégias de valorização e possíveis recompensas para os apoiadores mais engajados serão estudadas e aplicadas.</p>
-    <p id="token-text3">Nada está definido de forma rígida — o propósito é criar uma experiência justa e interativa, onde o sucesso do canal também possa, de alguma forma, refletir em quem acredita e participa dessa jornada desde o início.</p>
-    <p id="token-text4">Saiba mais em <a href="https://pump.fun" target="_blank">pump.fun</a>.</p>
-  </section>
+  <!-- MAIN CONTENT -->
+  <main class="pt-24 pb-16 px-6 max-w-4xl mx-auto space-y-20">
 
-  <!-- Links -->
-  <section id="links">
-    <h2 id="section-links">Links</h2>
-    <ul>
-      <li><i class="fab fa-twitter"></i><a href="https://twitter.com" target="_blank">Twitter</a></li>
-      <li><i class="fas fa-coins"></i><a href="https://pump.fun" target="_blank">Pump.fun</a></li>
-    </ul>
-  </section>
+    <!-- HOW IT WORKS (id preserved from original: como-funciona) -->
+    <section id="como-funciona" class="space-y-4">
+      <h2 class="text-3xl font-bold text-yellow-400" data-en="How It Works" data-zh="运作方式">How It Works</h2>
 
-</main>
+      <p data-en="The TQ Cup is a simulated tournament running in Football Manager. Each participant may acquire the right to support a specific national team by holding the $TQ token."
+         data-zh="TQ 杯是在 Football Manager 中运行的模拟锦标赛。每位参与者可以通过持有 $TQ 代币获得支持特定国家队的权利。">
+         The TQ Cup is a simulated tournament running in Football Manager. Each participant may acquire the right to support a specific national team by holding the $TQ token.
+      </p>
 
-<footer>
-  <p>&copy; 2025 Trequartista - Todos os direitos reservados</p>
-</footer>
+      <p data-en="Matches are automatically simulated by the game's engine — there is no human intervention. Team performance results from in-game data and player attributes."
+         data-zh="比赛由游戏引擎自动模拟——没有人为干预。球队的表现基于游戏内数据和球员属性。">
+         Matches are automatically simulated by the game's engine — there is no human intervention. Team performance results from in-game data and player attributes.
+      </p>
 
-<script>
-const observer = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('show'); } }); }, {threshold:0.2});
-document.querySelectorAll('section').forEach(sec=>observer.observe(sec));
+      <p data-en="This is the first competition. Soon we will run additional cups such as a traditional World Cup, Champions League formats, and more."
+         data-zh="这是第一场赛事。我们很快会推出传统世界杯、冠军联赛等更多赛事。">
+         This is the first competition. Soon we will run additional cups such as a traditional World Cup, Champions League formats, and more.
+      </p>
+    </section>
 
-const texts = {
-  pt:{ 
-    title:"Trequartista",
-    tagline:"Eu faço vídeos e jogo games, principalmente Football Manager.",
-    menu:{jogo:"Jogo Atual", desafios:"Desafios", token:"Token", links:"Links"},
-    section:{jogo:"Jogo Atual", desafios:"Desafios", links:"Links", token:"Token"},
-    challenge:"Levar um clube de uma cidade minúscula da Espanha (Brea de Aragon - 1559 habitantes) até os grandes palcos do futebol mundial.",
-    checklist:["Consolidar na 4ª Divisão","Subir para a 3ª Divisão","Estabelecer-se na 3ª Divisão","Subir para a 2ª Divisão","Temporada estável na 2ª Divisão","Subir para a 1ª Divisão (La Liga)","Estabelecer-se na La Liga","Classificar para a Europa League","Chegar à Champions League","Vencer a Champions League"],
-    token:[
-      "No Trequartista, cada fã pode se tornar parte do crescimento do projeto através de um token exclusivo criado na Pump.fun. Esse token conecta a comunidade ao desenvolvimento do canal, gerando uma ligação direta entre o que acontece nas streams e a participação dos seguidores.",
-      "A ideia é simples: conforme o canal evolui e conquista novos objetivos dentro do jogo, estratégias de valorização e possíveis recompensas para os apoiadores mais engajados serão estudadas e aplicadas.",
-      "Nada está definido de forma rígida — o propósito é criar uma experiência justa e interativa, onde o sucesso do canal também possa, de alguma forma, refletir em quem acredita e participa dessa jornada desde o início.",
-      "Saiba mais em pump.fun"
-    ]
-  },
-  en:{
-    title:"Trequartista",
-    tagline:"I stream games and share my gameplay, mostly Football Manager.",
-    menu:{jogo:"Current Game", desafios:"Challenges", token:"Token", links:"Links"},
-    section:{jogo:"Current Game", desafios:"Challenges", links:"Links", token:"Token"},
-    challenge:"Take a tiny Spanish town club (Brea de Aragon - 1,559 inhabitants) to the big stages of world football.",
-    checklist:["Consolidate in 4th Division","Promote to 3rd Division","Establish in 3rd Division","Promote to 2nd Division","Secure a stable season in 2nd Division","Promote to 1st Division (La Liga)","Establish in La Liga","Qualify for Europa League","Reach Champions League","Win the Champions League"],
-    token:[
-      "On Trequartista, every fan can become part of the project's growth through a unique token created on Pump.fun. This token connects the community to the channel’s development, creating a direct link between what happens in the streams and the participation of followers.",
-      "The idea is simple: as the channel evolves and achieves new goals within the game, strategies to reward and value the most engaged supporters will be studied and implemented.",
-      "Nothing is set in stone — the goal is to build a fair and interactive experience, where the channel’s success can, in some way, reflect on those who believe in and join this journey from the very beginning.",
-      "Learn more at pump.fun"
-    ]
-  }
-};
+    <!-- HOW TO PARTICIPATE (id como-participar) -->
+    <section id="como-participar" class="space-y-4">
+      <h2 class="text-3xl font-bold text-yellow-400" data-en="How to Participate" data-zh="如何参与">How to Participate</h2>
 
-function setLanguage(lang){
-  document.getElementById('title').textContent = texts[lang].title;
-  document.getElementById('tagline').textContent = texts[lang].tagline;
-  document.getElementById('menu-jogo').textContent = texts[lang].menu.jogo;
-  document.getElementById('menu-desafios').textContent = texts[lang].menu.desafios;
-  document.getElementById('menu-token').textContent = texts[lang].menu.token;
-  document.getElementById('menu-links').textContent = texts[lang].menu.links;
-  document.getElementById('section-jogo').textContent = texts[lang].section.jogo;
-  document.getElementById('section-desafios').textContent = texts[lang].section.desafios;
-  document.getElementById('section-links').textContent = texts[lang].section.links;
-  document.getElementById('section-token').textContent = texts[lang].section.token;
-  document.getElementById('challenge').textContent = texts[lang].challenge;
-  
-  const checklistItems = document.querySelectorAll('.checklist li');
-  texts[lang].checklist.forEach((text,i)=>{
-    if(checklistItems[i]) checklistItems[i].innerHTML = `<i class="fas fa-medal"></i>${text}`;
-  });
+      <p data-en="To participate, deposit 3,000,000 $TQ tokens into the tournament's official public wallet. After the deposit, comment on the token's page indicating which national team you chose to support."
+         data-zh="要参与，请将 3,000,000 个 $TQ 代币存入锦标赛的官方公开钱包。存款后，在代币页面留言说明您选择支持的国家队。">
+         To participate, deposit 3,000,000 $TQ tokens into the tournament's official public wallet. After the deposit, comment on the token's page indicating which national team you chose to support.
+      </p>
 
-  document.getElementById('token-text').textContent = texts[lang].token[0];
-  document.getElementById('token-text2').textContent = texts[lang].token[1];
-  document.getElementById('token-text3').textContent = texts[lang].token[2];
-  document.getElementById('token-text4').innerHTML = texts[lang].token[3].replace("pump.fun", '<a href="https://pump.fun" target="_blank">pump.fun</a>');
-}
-</script>
+      <p class="text-yellow-400" data-en="<strong>Official wallet:</strong> 8BJe23xCtDxWzcjfEGmijn7W7f4SYTvxao9XLVAs2cgb" data-zh="<strong>官方钱包：</strong>[在此处填写地址]">
+        <strong>Official wallet:</strong> [insert public address here]
+      </p>
+    </section>
 
+    <!-- TEAMS (id selecoes) -->
+    <section id="selecoes" class="space-y-6">
+      <h2 class="text-3xl font-bold text-yellow-400" data-en="Teams and Betting Values" data-zh="球队及投注金额">Teams and Betting Values</h2>
+
+      <p data-en="Values are displayed in $TQ tokens. Favorites are 3,000,000 $TQ and the other groups are proportionally priced."
+         data-zh="金额以 $TQ 代币表示。热门球队为 3,000,000 $TQ，其他组别按比例定价。">
+         Values are displayed in $TQ tokens. Favorites are 3,000,000 $TQ and the other groups are proportionally priced.
+      </p>
+
+      <!-- Group: Favorites -->
+      <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg">
+        <h3 class="text-xl font-semibold text-yellow-400" data-en="Favorites — 3,000,000 $TQ" data-zh="热门球队 — 3,000,000 $TQ">Favorites — 3,000,000 $TQ</h3>
+        <ul class="grid grid-cols-2 gap-2 mt-2">
+          <li><img class="flag" src="https://flagcdn.com/w20/br.png"><span data-en="Brazil" data-zh="巴西">Brazil</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/ar.png"><span data-en="Argentina" data-zh="阿根廷">Argentina</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/fr.png"><span data-en="France" data-zh="法国">France</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/gb.png"><span data-en="England" data-zh="英格兰">England</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/de.png"><span data-en="Germany" data-zh="德国">Germany</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Group: Strong -->
+      <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg">
+        <h3 class="text-xl font-semibold text-yellow-400" data-en="Strong — 2,500,000 $TQ" data-zh="强队 — 2,500,000 $TQ">Strong — 2,500,000 $TQ</h3>
+        <ul class="grid grid-cols-2 gap-2 mt-2">
+          <li><img class="flag" src="https://flagcdn.com/w20/pt.png"><span data-en="Portugal" data-zh="葡萄牙">Portugal</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+          <li><img class="flag" src="https://flagcdn.com/w20/es.png"><span data-en="Spain" data-zh="西班牙">Spain</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+          <li><img class="flag" src="https://flagcdn.com/w20/nl.png"><span data-en="Netherlands" data-zh="荷兰">Netherlands</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+          <li><img class="flag" src="https://flagcdn.com/w20/hr.png"><span data-en="Croatia" data-zh="克罗地亚">Croatia</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+          <li><img class="flag" src="https://flagcdn.com/w20/be.png"><span data-en="Belgium" data-zh="比利时">Belgium</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Group: Intermediate -->
+      <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg">
+        <h3 class="text-xl font-semibold text-yellow-400" data-en="Intermediate — 2,000,000 $TQ" data-zh="中等 — 2,000,000 $TQ">Intermediate — 2,000,000 $TQ</h3>
+        <ul class="grid grid-cols-2 gap-2 mt-2">
+          <li><img class="flag" src="https://flagcdn.com/w20/uy.png"><span data-en="Uruguay" data-zh="乌拉圭">Uruguay</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/dk.png"><span data-en="Denmark" data-zh="丹麦">Denmark</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/ch.png"><span data-en="Switzerland" data-zh="瑞士">Switzerland</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/sn.png"><span data-en="Senegal" data-zh="塞内加尔">Senegal</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/us.png"><span data-en="United States" data-zh="美国">United States</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/mx.png"><span data-en="Mexico" data-zh="墨西哥">Mexico</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Group: Average -->
+      <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg">
+        <h3 class="text-xl font-semibold text-yellow-400" data-en="Average — 1,500,000 $TQ" data-zh="一般 — 1,500,000 $TQ">Average — 1,500,000 $TQ</h3>
+        <ul class="grid grid-cols-2 gap-2 mt-2">
+          <li><img class="flag" src="https://flagcdn.com/w20/jp.png"><span data-en="Japan" data-zh="日本">Japan</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/kr.png"><span data-en="South Korea" data-zh="韩国">South Korea</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/pl.png"><span data-en="Poland" data-zh="波兰">Poland</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/ma.png"><span data-en="Morocco" data-zh="摩洛哥">Morocco</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/rs.png"><span data-en="Serbia" data-zh="塞尔维亚">Serbia</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Group: Underdogs -->
+      <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg">
+        <h3 class="text-xl font-semibold text-yellow-400" data-en="Underdogs — 1,000,000 $TQ" data-zh="黑马 — 1,000,000 $TQ">Underdogs — 1,000,000 $TQ</h3>
+        <ul class="grid grid-cols-2 gap-2 mt-2">
+          <li><img class="flag" src="https://flagcdn.com/w20/cr.png"><span data-en="Costa Rica" data-zh="哥斯达黎加">Costa Rica</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/ir.png"><span data-en="Iran" data-zh="伊朗">Iran</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/tn.png"><span data-en="Tunisia" data-zh="突尼斯">Tunisia</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/gb-wls.png"><span data-en="Wales" data-zh="威尔士">Wales</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/qa.png"><span data-en="Qatar" data-zh="卡塔尔">Qatar</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/cm.png"><span data-en="Cameroon" data-zh="喀麦隆">Cameroon</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/ca.png"><span data-en="Canada" data-zh="加拿大">Canada</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/gh.png"><span data-en="Ghana" data-zh="加纳">Ghana</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/au.png"><span data-en="Australia" data-zh="澳大利亚">Australia</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/sa.png"><span data-en="Saudi Arabia" data-zh="沙特阿拉伯">Saudi Arabia</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+
+          <li><img class="flag" src="https://flagcdn.com/w20/ec.png"><span data-en="Ecuador" data-zh="厄瓜多尔">Ecuador</span>
+            <select class="select-status" data-en="<option>Not chosen</option><option>Chosen</option>" data-zh="<option>未选择</option><option>已选择</option>" disabled>
+              <option>Not chosen</option><option>Chosen</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- PRIZES (id premios) -->
+    <section id="premios" class="space-y-6">
+      <h2 class="text-3xl font-bold text-yellow-400" data-en="Prizes" data-zh="奖品">Prizes</h2>
+
+      <p data-en="Of the total collected, <strong class='text-yellow-300'>18%</strong> of tokens will be <strong>burned</strong> — contributing to the appreciation of the $TQ ecosystem."
+         data-zh="在总筹集的代币中，<strong class='text-yellow-300'>18%</strong>将被<strong>销毁</strong>，以促进 $TQ 生态系统的增值。">
+         Of the total collected, <strong class='text-yellow-300'>18%</strong> of tokens will be <strong>burned</strong> — contributing to the appreciation of the $TQ ecosystem.
+      </p>
+
+      <p data-en="The remaining <strong class='text-yellow-300'>82%</strong> will be distributed <strong>cumulatively</strong> among the teams according to their performance."
+         data-zh="剩余的 <strong class='text-yellow-300'>82%</strong> 将根据表现以 <strong>累积</strong> 方式分配给各支球队。">
+         The remaining <strong class='text-yellow-300'>82%</strong> will be distributed <strong>cumulatively</strong> among the teams according to their performance.
+      </p>
+
+      <div class="bg-slate-800/70 p-4 rounded-lg shadow-lg space-y-5">
+        <div>
+          <span data-en="Round of 16" data-zh="16强">Round of 16</span>: 1%
+          <div class="progress-bar" style="width:10%">1%</div>
+        </div>
+
+        <div>
+          <span data-en="Quarterfinals" data-zh="8强">Quarterfinals</span>: 2%
+          <div class="progress-bar" style="width:24%">3%</div>
+        </div>
+
+        <div>
+          <span data-en="Semifinals" data-zh="半决赛">Semifinals</span>: 5%
+          <div class="progress-bar" style="width:42%">8%</div>
+        </div>
+
+        <div>
+          <span data-en="Runner-up" data-zh="亚军">Runner-up</span>: 10%
+          <div class="progress-bar" style="width:64%">18%</div>
+        </div>
+
+        <div>
+          <span data-en="Champion" data-zh="冠军">Champion</span>: 20%
+          <div class="progress-bar" style="width:100%">28%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT THE GAME (id sobre) -->
+    <section id="sobre" class="space-y-4">
+      <h2 class="text-3xl font-bold text-yellow-400" data-en="About the Game" data-zh="关于游戏">About the Game</h2>
+
+      <p data-en="Football Manager is one of the most advanced football management simulators. Developed by Sports Interactive, the game places the user in the role of manager, handling tactics, transfers, finances and player development."
+         data-zh="Football Manager 是最先进的足球管理模拟器之一，由 Sports Interactive 开发。游戏中玩家扮演教练/经理，处理战术、转会、财务和球员成长等事务。">
+         Football Manager is one of the most advanced football management simulators. Developed by Sports Interactive, the game places the user in the role of manager, handling tactics, transfers, finances and player development.
+      </p>
+
+      <p data-en="Matches are decided by the simulation engine using realistic player stats and team data — there is no human manipulation of match outcomes in this tournament."
+         data-zh="比赛由模拟引擎基于真实球员数据和球队信息计算决定——本赛事的比赛结果不会有人为操控。">
+         Matches are decided by the simulation engine using realistic player stats and team data — there is no human manipulation of match outcomes in this tournament.
+      </p>
+
+      <p data-en="For more information, visit the Football Manager article on Wikipedia."
+         data-zh="欲了解更多信息，请访问 Wikipedia 上的 Football Manager 条目。">
+         For more information, visit the Football Manager article on Wikipedia.
+      </p>
+
+      <p><a href="https://en.wikipedia.org/wiki/Football_Manager" target="_blank" class="text-yellow-400 underline" data-en="Wikipedia" data-zh="维基百科">Wikipedia</a></p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-yellow-600 text-slate-900 text-center py-4 font-semibold">
+    <p data-en="© 2025 TQ Cup — Powered by Football Manager & $TQ Token" data-zh="© 2025 TQ 杯 — 由 Football Manager 与 $TQ 代币支持">© 2025 TQ Cup — Powered by Football Manager & $TQ Token</p>
+  </footer>
+
+  <!-- SCRIPT: language switch + tab highlight -->
+  <script>
+    // function to set language for all elements with data-en attribute
+    function setLanguage(lang) {
+      // For elements with data-en (we use data-en as the 'key presence' selector)
+      document.querySelectorAll('[data-en]').forEach(el => {
+        // choose dataset key
+        const val = el.dataset[lang];
+        if (typeof val !== 'undefined') {
+          el.innerHTML = val;
+        }
+      });
+
+      // For select elements that hold option HTML inside data-en/data-zh
+      document.querySelectorAll('select.select-status').forEach(s => {
+        const html = s.dataset[lang];
+        if (typeof html !== 'undefined') {
+          s.innerHTML = html;
+        }
+        // keep disabled (only admin edits locally)
+        s.disabled = true;
+      });
+    }
+
+    // initial language = English
+    setLanguage('en');
+
+    // hook up language selector
+    document.getElementById('langSelect').addEventListener('change', (e) => {
+      const lang = e.target.value;
+      setLanguage(lang);
+    });
+
+    // tab highlight (keeps original class behavior)
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('tab-active'));
+        tab.classList.add('tab-active');
+      });
+    });
+  </script>
 </body>
 </html>
